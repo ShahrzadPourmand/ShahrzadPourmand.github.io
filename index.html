@@ -9,6 +9,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+    .collapsible {
+      background-color: #946E83;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      border-radius:5px;
+    }
+
+    .active, .collapsible:hover {
+      background-color: #04395E;
+    }
+
+    .collapsible:after {
+      content: '\002B';
+      color: white;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2212";
+    }
+
+    .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: #f1f1f1;
+    }
     </style>
   </head>
 <body class="w3-light-grey">
@@ -152,7 +188,10 @@
           <h5 class="w3-opacity"><b>Youtube channel</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
           <p>Web Development! All I need to know in one place</p>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/4UFDiotzocE" frameborder="0"></iframe>
+          <button class="collapsible">View project</button>
+          <div class="content">
+            <p><iframe width="560" height="315" src="https://www.youtube.com/embed/4UFDiotzocE" frameborder="0"></iframe></p>
+          </div>
           <hr>
         </div>
       </div>
@@ -172,8 +211,24 @@
   <i class="fa fa-linkedin w3-hover-opacity"></i>
  <p class="w3-small">This website was made with W3schools Spaces. Make your own free website today!</p>
  <a class="w3-button w3-round-xxlarge w3-small w3-light-grey w3-margin-bottom" href="https://www.w3schools.com/spaces" target="_blank">Start now</a> <!-- End footer -->
- </footer>
+</footer>
 
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 </body>
 </html>
 
